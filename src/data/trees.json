@@ -1,0 +1,17 @@
+[
+  { "id": 104, "title": "Maximum Depth of Binary Tree", "difficulty": "Easy", "topic": "Trees", "companyTags": ["Amazon", "LinkedIn", "Apple"], "url": "https://leetcode.com/problems/maximum-depth-of-binary-tree/" },
+  { "id": 543, "title": "Diameter of Binary Tree", "difficulty": "Easy", "topic": "Trees", "companyTags": ["Facebook", "Google", "Amazon"], "url": "https://leetcode.com/problems/diameter-of-binary-tree/" },
+  { "id": 226, "title": "Invert Binary Tree", "difficulty": "Easy", "topic": "Trees", "companyTags": ["Google", "Amazon", "Apple"], "url": "https://leetcode.com/problems/invert-binary-tree/" },
+  { "id": 100, "title": "Same Tree", "difficulty": "Easy", "topic": "Trees", "companyTags": ["Amazon", "Bloomberg"], "url": "https://leetcode.com/problems/same-tree/" },
+  { "id": 572, "title": "Subtree of Another Tree", "difficulty": "Easy", "topic": "Trees", "companyTags": ["Amazon", "Facebook"], "url": "https://leetcode.com/problems/subtree-of-another-tree/" },
+  { "id": 235, "title": "Lowest Common Ancestor of a Binary Search Tree", "difficulty": "Easy", "topic": "Trees", "companyTags": ["Amazon", "Facebook", "Microsoft"], "url": "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/" },
+  { "id": 102, "title": "Binary Tree Level Order Traversal", "difficulty": "Medium", "topic": "Trees", "companyTags": ["Amazon", "Facebook", "Microsoft"], "url": "https://leetcode.com/problems/binary-tree-level-order-traversal/" },
+  { "id": 199, "title": "Binary Tree Right Side View", "difficulty": "Medium", "topic": "Trees", "companyTags": ["Facebook", "Amazon"], "url": "https://leetcode.com/problems/binary-tree-right-side-view/" },
+  { "id": 1448, "title": "Count Good Nodes in Binary Tree", "difficulty": "Medium", "topic": "Trees", "companyTags": ["Microsoft", "Amazon"], "url": "https://leetcode.com/problems/count-good-nodes-in-binary-tree/" },
+  { "id": 98, "title": "Validate Binary Search Tree", "difficulty": "Medium", "topic": "Trees", "companyTags": ["Amazon", "Bloomberg", "Facebook"], "url": "https://leetcode.com/problems/validate-binary-search-tree/" },
+  { "id": 230, "title": "Kth Smallest Element in a BST", "difficulty": "Medium", "topic": "Trees", "companyTags": ["Google", "Amazon", "Facebook"], "url": "https://leetcode.com/problems/kth-smallest-element-in-a-bst/" },
+  { "id": 105, "title": "Construct Binary Tree from Preorder and Inorder Traversal", "difficulty": "Medium", "topic": "Trees", "companyTags": ["Amazon", "Microsoft"], "url": "https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/" },
+  { "id": 297, "title": "Serialize and Deserialize Binary Tree", "difficulty": "Hard", "topic": "Trees", "companyTags": ["Facebook", "Google", "Amazon"], "url": "https://leetcode.com/problems/serialize-and-deserialize-binary-tree/" },
+  { "id": 124, "title": "Binary Tree Maximum Path Sum", "difficulty": "Hard", "topic": "Trees", "companyTags": ["Amazon", "Facebook", "Microsoft"], "url": "https://leetcode.com/problems/binary-tree-maximum-path-sum/" },
+  { "id": 23, "title": "Merge K Sorted Lists (using Tree / Heap)", "difficulty": "Hard", "topic": "Trees", "companyTags": ["Amazon", "Facebook", "Uber"], "url": "https://leetcode.com/problems/merge-k-sorted-lists/" }
+]

@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #0F1117;
+    color: #F1F5F9;
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #252D3D transparent;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #252D3D;
+    border-radius: 3px;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-surface-card border border-surface-border rounded-2xl;
+  }
+
+  .btn-primary {
+    @apply bg-accent hover:bg-accent-dim text-white font-medium px-5 py-2.5 rounded-xl
+           transition-all duration-150 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+
+  .btn-ghost {
+    @apply bg-transparent hover:bg-surface-hover text-text-secondary hover:text-text-primary
+           font-medium px-4 py-2 rounded-xl transition-all duration-150;
+  }
+
+  .input-field {
+    @apply w-full bg-surface-hover border border-surface-border rounded-xl px-4 py-3
+           text-text-primary placeholder:text-text-muted focus:outline-none
+           focus:border-accent focus:ring-1 focus:ring-accent/30
+           transition-all duration-150 text-sm;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1 rounded-full;
+  }
+
+  .badge-easy {
+    @apply badge bg-green-dim text-green-pp;
+  }
+
+  .badge-medium {
+    @apply badge bg-amber-dim text-amber-pp;
+  }
+
+  .badge-hard {
+    @apply badge bg-red-dim text-red-pp;
+  }
+
+  .nav-link {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium
+           text-text-secondary hover:text-text-primary hover:bg-surface-hover
+           transition-all duration-150;
+  }
+
+  .nav-link.active {
+    @apply bg-accent-glow text-accent;
+  }
+}
+
+@layer utilities {
+  .glow-accent {
+    box-shadow: 0 0 30px rgba(99,102,241,0.2);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #06B6D4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .grid-pattern {
+    background-image: radial-gradient(circle, #252D3D 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+}

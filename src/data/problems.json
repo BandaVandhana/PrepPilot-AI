@@ -1,0 +1,90 @@
+{
+  "arrays": [
+    { "id": 1, "title": "Two Sum", "difficulty": "Easy", "topic": "Arrays", "companyTags": ["Amazon", "Google", "Facebook"], "url": "https://leetcode.com/problems/two-sum/" },
+    { "id": 121, "title": "Best Time to Buy and Sell Stock", "difficulty": "Easy", "topic": "Arrays", "companyTags": ["Amazon", "Facebook", "Cisco"], "url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/" },
+    { "id": 217, "title": "Contains Duplicate", "difficulty": "Easy", "topic": "Arrays", "companyTags": ["Amazon", "Yahoo"], "url": "https://leetcode.com/problems/contains-duplicate/" },
+    { "id": 238, "title": "Product of Array Except Self", "difficulty": "Medium", "topic": "Arrays", "companyTags": ["Amazon", "Facebook", "Microsoft"], "url": "https://leetcode.com/problems/product-of-array-except-self/" },
+    { "id": 53, "title": "Maximum Subarray", "difficulty": "Medium", "topic": "Arrays", "companyTags": ["Amazon", "LinkedIn", "Microsoft"], "url": "https://leetcode.com/problems/maximum-subarray/" },
+    { "id": 152, "title": "Maximum Product Subarray", "difficulty": "Medium", "topic": "Arrays", "companyTags": ["Amazon", "Google"], "url": "https://leetcode.com/problems/maximum-product-subarray/" },
+    { "id": 153, "title": "Find Minimum in Rotated Sorted Array", "difficulty": "Medium", "topic": "Arrays", "companyTags": ["Amazon", "Microsoft"], "url": "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/" },
+    { "id": 33, "title": "Search in Rotated Sorted Array", "difficulty": "Medium", "topic": "Arrays", "companyTags": ["Amazon", "Facebook", "Cisco"], "url": "https://leetcode.com/problems/search-in-rotated-sorted-array/" },
+    { "id": 11, "title": "Container With Most Water", "difficulty": "Medium", "topic": "Arrays", "companyTags": ["Amazon", "Google", "Bloomberg"], "url": "https://leetcode.com/problems/container-with-most-water/" },
+    { "id": 15, "title": "3Sum", "difficulty": "Medium", "topic": "Arrays", "companyTags": ["Amazon", "Facebook", "Google"], "url": "https://leetcode.com/problems/3sum/" },
+    { "id": 42, "title": "Trapping Rain Water", "difficulty": "Hard", "topic": "Arrays", "companyTags": ["Amazon", "Google", "Facebook"], "url": "https://leetcode.com/problems/trapping-rain-water/" },
+    { "id": 84, "title": "Largest Rectangle in Histogram", "difficulty": "Hard", "topic": "Arrays", "companyTags": ["Amazon", "Facebook"], "url": "https://leetcode.com/problems/largest-rectangle-in-histogram/" }
+  ],
+  "strings": [
+    { "id": 125, "title": "Valid Palindrome", "difficulty": "Easy", "topic": "Strings", "companyTags": ["Facebook", "Cisco", "Microsoft"], "url": "https://leetcode.com/problems/valid-palindrome/" },
+    { "id": 242, "title": "Valid Anagram", "difficulty": "Easy", "topic": "Strings", "companyTags": ["Amazon", "Yahoo"], "url": "https://leetcode.com/problems/valid-anagram/" },
+    { "id": 20, "title": "Valid Parentheses", "difficulty": "Easy", "topic": "Strings", "companyTags": ["Amazon", "Google", "Facebook"], "url": "https://leetcode.com/problems/valid-parentheses/" },
+    { "id": 3, "title": "Longest Substring Without Repeating Characters", "difficulty": "Medium", "topic": "Strings", "companyTags": ["Amazon", "Bloomberg", "Cisco"], "url": "https://leetcode.com/problems/longest-substring-without-repeating-characters/" },
+    { "id": 424, "title": "Longest Repeating Character Replacement", "difficulty": "Medium", "topic": "Strings", "companyTags": ["Google", "Amazon"], "url": "https://leetcode.com/problems/longest-repeating-character-replacement/" },
+    { "id": 567, "title": "Permutation in String", "difficulty": "Medium", "topic": "Strings", "companyTags": ["Amazon", "Google"], "url": "https://leetcode.com/problems/permutation-in-string/" },
+    { "id": 49, "title": "Group Anagrams", "difficulty": "Medium", "topic": "Strings", "companyTags": ["Amazon", "Facebook", "Microsoft"], "url": "https://leetcode.com/problems/group-anagrams/" },
+    { "id": 647, "title": "Palindromic Substrings", "difficulty": "Medium", "topic": "Strings", "companyTags": ["Facebook", "Amazon"], "url": "https://leetcode.com/problems/palindromic-substrings/" },
+    { "id": 76, "title": "Minimum Window Substring", "difficulty": "Hard", "topic": "Strings", "companyTags": ["Facebook", "Google", "Uber"], "url": "https://leetcode.com/problems/minimum-window-substring/" }
+  ],
+  "dp": [
+    { "id": 70, "title": "Climbing Stairs", "difficulty": "Easy", "topic": "DP", "companyTags": ["Amazon", "Apple", "Cisco"], "url": "https://leetcode.com/problems/climbing-stairs/" },
+    { "id": 746, "title": "Min Cost Climbing Stairs", "difficulty": "Easy", "topic": "DP", "companyTags": ["Amazon", "Google"], "url": "https://leetcode.com/problems/min-cost-climbing-stairs/" },
+    { "id": 198, "title": "House Robber", "difficulty": "Medium", "topic": "DP", "companyTags": ["Amazon", "Airbnb"], "url": "https://leetcode.com/problems/house-robber/" },
+    { "id": 213, "title": "House Robber II", "difficulty": "Medium", "topic": "DP", "companyTags": ["Microsoft", "Amazon"], "url": "https://leetcode.com/problems/house-robber-ii/" },
+    { "id": 5, "title": "Longest Palindromic Substring", "difficulty": "Medium", "topic": "DP", "companyTags": ["Amazon", "Microsoft", "Bloomberg"], "url": "https://leetcode.com/problems/longest-palindromic-substring/" },
+    { "id": 300, "title": "Longest Increasing Subsequence", "difficulty": "Medium", "topic": "DP", "companyTags": ["Amazon", "Microsoft", "Google"], "url": "https://leetcode.com/problems/longest-increasing-subsequence/" },
+    { "id": 1143, "title": "Longest Common Subsequence", "difficulty": "Medium", "topic": "DP", "companyTags": ["Google", "Amazon", "Microsoft"], "url": "https://leetcode.com/problems/longest-common-subsequence/" },
+    { "id": 416, "title": "Partition Equal Subset Sum", "difficulty": "Medium", "topic": "DP", "companyTags": ["Amazon", "Facebook"], "url": "https://leetcode.com/problems/partition-equal-subset-sum/" },
+    { "id": 518, "title": "Coin Change II", "difficulty": "Medium", "topic": "DP", "companyTags": ["Google", "Amazon"], "url": "https://leetcode.com/problems/coin-change-ii/" },
+    { "id": 322, "title": "Coin Change", "difficulty": "Medium", "topic": "DP", "companyTags": ["Amazon", "Google", "Microsoft"], "url": "https://leetcode.com/problems/coin-change/" },
+    { "id": 72, "title": "Edit Distance", "difficulty": "Hard", "topic": "DP", "companyTags": ["Google", "Amazon", "Microsoft"], "url": "https://leetcode.com/problems/edit-distance/" },
+    { "id": 312, "title": "Burst Balloons", "difficulty": "Hard", "topic": "DP", "companyTags": ["Google", "Amazon"], "url": "https://leetcode.com/problems/burst-balloons/" }
+  ],
+  "heap": [
+    { "id": 703, "title": "Kth Largest Element in a Stream", "difficulty": "Easy", "topic": "Heap", "companyTags": ["Amazon", "Google"], "url": "https://leetcode.com/problems/kth-largest-element-in-a-stream/" },
+    { "id": 1046, "title": "Last Stone Weight", "difficulty": "Easy", "topic": "Heap", "companyTags": ["Google", "Facebook"], "url": "https://leetcode.com/problems/last-stone-weight/" },
+    { "id": 215, "title": "Kth Largest Element in an Array", "difficulty": "Medium", "topic": "Heap", "companyTags": ["Amazon", "Facebook", "Google"], "url": "https://leetcode.com/problems/kth-largest-element-in-an-array/" },
+    { "id": 973, "title": "K Closest Points to Origin", "difficulty": "Medium", "topic": "Heap", "companyTags": ["Amazon", "Facebook", "Uber"], "url": "https://leetcode.com/problems/k-closest-points-to-origin/" },
+    { "id": 621, "title": "Task Scheduler", "difficulty": "Medium", "topic": "Heap", "companyTags": ["Facebook", "Apple"], "url": "https://leetcode.com/problems/task-scheduler/" },
+    { "id": 1405, "title": "Longest Happy String", "difficulty": "Medium", "topic": "Heap", "companyTags": ["Google"], "url": "https://leetcode.com/problems/longest-happy-string/" },
+    { "id": 295, "title": "Find Median from Data Stream", "difficulty": "Hard", "topic": "Heap", "companyTags": ["Amazon", "Google", "Facebook"], "url": "https://leetcode.com/problems/find-median-from-data-stream/" }
+  ],
+  "linkedlist": [
+    { "id": 206, "title": "Reverse Linked List", "difficulty": "Easy", "topic": "Linked List", "companyTags": ["Amazon", "Facebook", "Cisco"], "url": "https://leetcode.com/problems/reverse-linked-list/" },
+    { "id": 21, "title": "Merge Two Sorted Lists", "difficulty": "Easy", "topic": "Linked List", "companyTags": ["Amazon", "Microsoft"], "url": "https://leetcode.com/problems/merge-two-sorted-lists/" },
+    { "id": 141, "title": "Linked List Cycle", "difficulty": "Easy", "topic": "Linked List", "companyTags": ["Amazon", "Bloomberg", "Cisco"], "url": "https://leetcode.com/problems/linked-list-cycle/" },
+    { "id": 143, "title": "Reorder List", "difficulty": "Medium", "topic": "Linked List", "companyTags": ["Amazon", "Bloomberg"], "url": "https://leetcode.com/problems/reorder-list/" },
+    { "id": 19, "title": "Remove Nth Node From End of List", "difficulty": "Medium", "topic": "Linked List", "companyTags": ["Amazon", "Microsoft", "Adobe"], "url": "https://leetcode.com/problems/remove-nth-node-from-end-of-list/" },
+    { "id": 138, "title": "Copy List with Random Pointer", "difficulty": "Medium", "topic": "Linked List", "companyTags": ["Amazon", "Microsoft", "Bloomberg"], "url": "https://leetcode.com/problems/copy-list-with-random-pointer/" },
+    { "id": 287, "title": "Find the Duplicate Number", "difficulty": "Medium", "topic": "Linked List", "companyTags": ["Amazon", "Microsoft"], "url": "https://leetcode.com/problems/find-the-duplicate-number/" },
+    { "id": 146, "title": "LRU Cache", "difficulty": "Medium", "topic": "Linked List", "companyTags": ["Amazon", "Google", "Facebook"], "url": "https://leetcode.com/problems/lru-cache/" },
+    { "id": 25, "title": "Reverse Nodes in k-Group", "difficulty": "Hard", "topic": "Linked List", "companyTags": ["Amazon", "Microsoft", "Adobe"], "url": "https://leetcode.com/problems/reverse-nodes-in-k-group/" }
+  ],
+  "binarysearch": [
+    { "id": 704, "title": "Binary Search", "difficulty": "Easy", "topic": "Binary Search", "companyTags": ["Amazon", "Bloomberg"], "url": "https://leetcode.com/problems/binary-search/" },
+    { "id": 278, "title": "First Bad Version", "difficulty": "Easy", "topic": "Binary Search", "companyTags": ["Facebook", "Amazon"], "url": "https://leetcode.com/problems/first-bad-version/" },
+    { "id": 875, "title": "Koko Eating Bananas", "difficulty": "Medium", "topic": "Binary Search", "companyTags": ["Amazon", "Google"], "url": "https://leetcode.com/problems/koko-eating-bananas/" },
+    { "id": 74, "title": "Search a 2D Matrix", "difficulty": "Medium", "topic": "Binary Search", "companyTags": ["Amazon", "Microsoft"], "url": "https://leetcode.com/problems/search-a-2d-matrix/" },
+    { "id": 162, "title": "Find Peak Element", "difficulty": "Medium", "topic": "Binary Search", "companyTags": ["Google", "Facebook", "Microsoft"], "url": "https://leetcode.com/problems/find-peak-element/" },
+    { "id": 981, "title": "Time Based Key-Value Store", "difficulty": "Medium", "topic": "Binary Search", "companyTags": ["Google", "Uber"], "url": "https://leetcode.com/problems/time-based-key-value-store/" },
+    { "id": 4, "title": "Median of Two Sorted Arrays", "difficulty": "Hard", "topic": "Binary Search", "companyTags": ["Google", "Amazon", "Microsoft"], "url": "https://leetcode.com/problems/median-of-two-sorted-arrays/" }
+  ],
+  "greedy": [
+    { "id": 455, "title": "Assign Cookies", "difficulty": "Easy", "topic": "Greedy", "companyTags": ["Amazon"], "url": "https://leetcode.com/problems/assign-cookies/" },
+    { "id": 605, "title": "Can Place Flowers", "difficulty": "Easy", "topic": "Greedy", "companyTags": ["Amazon", "Google"], "url": "https://leetcode.com/problems/can-place-flowers/" },
+    { "id": 55, "title": "Jump Game", "difficulty": "Medium", "topic": "Greedy", "companyTags": ["Amazon", "Microsoft"], "url": "https://leetcode.com/problems/jump-game/" },
+    { "id": 45, "title": "Jump Game II", "difficulty": "Medium", "topic": "Greedy", "companyTags": ["Amazon", "Google"], "url": "https://leetcode.com/problems/jump-game-ii/" },
+    { "id": 134, "title": "Gas Station", "difficulty": "Medium", "topic": "Greedy", "companyTags": ["Amazon", "Google"], "url": "https://leetcode.com/problems/gas-station/" },
+    { "id": 435, "title": "Non-overlapping Intervals", "difficulty": "Medium", "topic": "Greedy", "companyTags": ["Google", "Facebook"], "url": "https://leetcode.com/problems/non-overlapping-intervals/" },
+    { "id": 56, "title": "Merge Intervals", "difficulty": "Medium", "topic": "Greedy", "companyTags": ["Facebook", "Google", "Amazon"], "url": "https://leetcode.com/problems/merge-intervals/" }
+  ],
+  "backtracking": [
+    { "id": 78, "title": "Subsets", "difficulty": "Medium", "topic": "Backtracking", "companyTags": ["Amazon", "Facebook", "Google"], "url": "https://leetcode.com/problems/subsets/" },
+    { "id": 39, "title": "Combination Sum", "difficulty": "Medium", "topic": "Backtracking", "companyTags": ["Amazon", "Google"], "url": "https://leetcode.com/problems/combination-sum/" },
+    { "id": 46, "title": "Permutations", "difficulty": "Medium", "topic": "Backtracking", "companyTags": ["Amazon", "Microsoft", "LinkedIn"], "url": "https://leetcode.com/problems/permutations/" },
+    { "id": 90, "title": "Subsets II", "difficulty": "Medium", "topic": "Backtracking", "companyTags": ["Amazon", "Facebook"], "url": "https://leetcode.com/problems/subsets-ii/" },
+    { "id": 40, "title": "Combination Sum II", "difficulty": "Medium", "topic": "Backtracking", "companyTags": ["Amazon"], "url": "https://leetcode.com/problems/combination-sum-ii/" },
+    { "id": 79, "title": "Word Search", "difficulty": "Medium", "topic": "Backtracking", "companyTags": ["Amazon", "Facebook", "Microsoft"], "url": "https://leetcode.com/problems/word-search/" },
+    { "id": 131, "title": "Palindrome Partitioning", "difficulty": "Medium", "topic": "Backtracking", "companyTags": ["Google", "Amazon"], "url": "https://leetcode.com/problems/palindrome-partitioning/" },
+    { "id": 17, "title": "Letter Combinations of a Phone Number", "difficulty": "Medium", "topic": "Backtracking", "companyTags": ["Amazon", "Google", "Facebook"], "url": "https://leetcode.com/problems/letter-combinations-of-a-phone-number/" },
+    { "id": 51, "title": "N-Queens", "difficulty": "Hard", "topic": "Backtracking", "companyTags": ["Amazon", "Microsoft"], "url": "https://leetcode.com/problems/n-queens/" }
+  ]
+}
