@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useAuth } from '../hooks/useAuth'
-import { getProfile, saveDailyPlan, getProgressLogs, upsertProgressLog } from '../services/profileService'
+import { getProfile, saveDailyPlan, getDailyPlans, getProgressLogs, upsertProgressLog } from '../services/profileService'
 import { generateDailyPlan } from '../services/geminiService'
 import { getTodayDate } from '../utils/scoring'
 
@@ -21,17 +21,33 @@ export default function Roadmap() {
   const today = getTodayDate()
 
   useEffect(() => {
-    if (!user) return
-    Promise.all([
-      getProfile(user.id),
-      getProgressLogs(user.id, today),
-    ]).then(([p, logs]) => {
+  if (!user) return
+
+  Promise.all([
+    getProfile(user.id),
+    getProgressLogs(user.id, today),
+    getDailyPlans(user.id, 7),
+  ])
+    .then(([p, logs, plans]) => {
       setProfile(p)
+
       const completed = {}
-      logs.forEach(l => { completed[l.task_name] = l.completed })
+      logs.forEach(l => {
+        completed[l.task_name] = l.completed
+      })
       setCompletedTasks(completed)
+
+      const todayPlan = plans.find(p => p.date === today)
+
+      if (todayPlan) {
+        setPlan({
+          greeting: 'Continue your preparation journey 🚀',
+          tasks: todayPlan.tasks || [],
+        })
+      }
     })
-  }, [user])
+    .catch(console.error)
+}, [user, today])
 
   const handleGenerate = async () => {
     if (!profile) {
