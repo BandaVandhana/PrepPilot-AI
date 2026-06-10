@@ -28,7 +28,7 @@ function extractJson(text) {
   return null
 }
 
-/* ---------------- GEMINI CALL WRAPPER ---------------- */
+/* ---------------- GEMINI CALL ---------------- */
 async function callGemini(prompt, maxTokens = 4096) {
   const res = await fetch(GEMINI_URL, {
     method: 'POST',
@@ -42,8 +42,8 @@ async function callGemini(prompt, maxTokens = 4096) {
         },
       ],
       generationConfig: {
-        temperature: 0.7,
-        maxOutputTokens: 4096,
+        temperature: 0.4,
+        maxOutputTokens: maxTokens,
       },
     }),
   })
@@ -57,15 +57,11 @@ async function callGemini(prompt, maxTokens = 4096) {
 
   const raw =
     data?.candidates?.[0]?.content?.parts?.[0]?.text || ''
-    console.log("FULL GEMINI RESPONSE:")
-    console.log(data)
 
-    console.log("RAW TEXT:")
-    console.log(raw)
+  console.log('FULL GEMINI RESPONSE:', data)
+  console.log('RAW GEMINI RESPONSE:', raw)
 
-  console.log('RAW GEMINI RESPONSE:\n', raw)
-
-  const parsed = extractJSON(raw)
+  const parsed = extractJson(raw)
 
   if (!parsed) {
     console.error('FAILED TO PARSE:', raw)
@@ -76,32 +72,52 @@ async function callGemini(prompt, maxTokens = 4096) {
 }
 
 /* ---------------- DAILY PLAN ---------------- */
-export async function generateReadinessExplanation(metrics) {
+export async function generateDailyPlan(profile) {
   const prompt = `
 You are PrepPilot AI.
 
-Analyze placement readiness.
+Generate a personalized placement preparation plan.
 
 Return ONLY valid JSON.
 
+Schema:
+
 {
-  "strengths": [
-    "strength 1",
-    "strength 2"
-  ],
-  "weaknesses": [
-    "weakness 1",
-    "weakness 2"
-  ],
-  "nextStep": "one actionable recommendation"
+  "greeting": "one motivational sentence",
+  "tasks": [
+    {
+      "id": "t1",
+      "type": "dsa",
+      "title": "problem or topic name",
+      "description": "short description",
+      "duration": 45,
+      "lcNumber": 207,
+      "lcUrl": "https://leetcode.com/problems/course-schedule/"
+    }
+  ]
 }
 
-Metrics:
-${JSON.stringify(metrics, null, 2)}
+Rules:
+- Return EXACTLY 3 tasks.
+- Use ONLY task types:
+  - dsa
+  - concept
+  - mcq
+  - revision
+- DSA tasks must include lcNumber and lcUrl.
+- Non-DSA tasks must NOT include lcNumber or lcUrl.
+- Include at least one DSA task.
+- Include one OS/DBMS/CN concept task.
+- Keep descriptions short.
+- Return JSON only.
+- No markdown.
+- No explanation.
 
-Return JSON only.
+Student Profile:
+${JSON.stringify(profile, null, 2)}
 `
-  return await callGemini(prompt, 1024)
+
+  return await callGemini(prompt, 4096)
 }
 
 /* ---------------- READINESS EXPLANATION ---------------- */
@@ -130,5 +146,6 @@ ${JSON.stringify(metrics, null, 2)}
 
 Return JSON only.
 `
+
   return await callGemini(prompt, 1024)
 }
