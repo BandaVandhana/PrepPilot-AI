@@ -10,6 +10,7 @@ import Profile from './pages/Profile'
 import Layout from './components/Layout'
 import Auth from './pages/Auth'
 import ResetPassword from './pages/ResetPassword'
+import Onboarding from './pages/Onboarding'
 
 function ProtectedRoute({ children }) {
   const { user, loading } = useAuth()
@@ -39,35 +40,31 @@ function AppRoutes() {
   return (
     <Routes>
 
-      {/* Public routes */}
-      <Route
-        path="/"
-        element={user ? <Navigate to="/dashboard" replace /> : <Landing />}
-      />
-
+      {/* Public */}
+      <Route path="/" element={user ? <Navigate to="/dashboard" /> : <Landing />} />
       <Route path="/auth" element={<Auth />} />
-
-      {/* 🔥 IMPORTANT: Reset password MUST be public */}
       <Route path="/reset-password" element={<ResetPassword />} />
 
-      {/* Protected routes */}
+      {/* Onboarding (public BUT guarded inside page later if needed) */}
+      <Route path="/onboarding" element={<Onboarding />} />
+
+      {/* Protected layout wrapper */}
       <Route
-        path="/"
         element={
           <ProtectedRoute>
             <Layout />
           </ProtectedRoute>
         }
       >
-        <Route path="dashboard" element={<Dashboard />} />
-        <Route path="roadmap" element={<Roadmap />} />
-        <Route path="leetcode" element={<LeetCode />} />
-        <Route path="progress" element={<Progress />} />
-        <Route path="profile" element={<Profile />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/roadmap" element={<Roadmap />} />
+        <Route path="/leetcode" element={<LeetCode />} />
+        <Route path="/progress" element={<Progress />} />
+        <Route path="/profile" element={<Profile />} />
       </Route>
 
       {/* fallback */}
-      <Route path="*" element={<Navigate to="/" replace />} />
+      <Route path="*" element={<Navigate to="/" />} />
 
     </Routes>
   )

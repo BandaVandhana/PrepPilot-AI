@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Navigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
 
 export default function Auth() {
@@ -11,8 +11,9 @@ export default function Auth() {
     resetPassword,
   } = useAuth()
 
-  const [isLogin, setIsLogin] = useState(true)
+  const navigate = useNavigate()
 
+  const [isLogin, setIsLogin] = useState(true)
   const [fullName, setFullName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -32,10 +33,13 @@ export default function Auth() {
 
       if (isLogin) {
         await signIn(email, password)
+        navigate('/dashboard')
       } else {
         await signUp(fullName, email, password)
-        setError('Account created successfully. Please check your email if verification is enabled.')
+        setError('Account created! Please check your email to verify.')
+        setIsLogin(true)
       }
+
     } catch (err) {
       const message = err?.message?.toLowerCase() || ''
 
@@ -55,7 +59,7 @@ export default function Auth() {
 
   const handleForgotPassword = async () => {
     if (!email) {
-      setError('Please enter your email first.')
+      setError('Enter your email first.')
       return
     }
 
@@ -75,12 +79,12 @@ export default function Auth() {
 
         <div className="text-center mb-8">
           <h1 className="text-3xl font-semibold text-text-primary">
-            {isLogin ? 'Welcome Back' : 'Create your PrepPilot account'}
+            {isLogin ? 'Welcome Back' : 'Create Account'}
           </h1>
 
           <p className="text-text-secondary mt-2">
             {isLogin
-              ? 'Continue your placement preparation journey'
+              ? 'Continue your preparation journey'
               : 'Start preparing smarter with PrepPilot AI'}
           </p>
         </div>
@@ -96,73 +100,53 @@ export default function Auth() {
           <form onSubmit={handleSubmit} className="space-y-4">
 
             {!isLogin && (
-              <div>
-                <label className="block text-sm text-text-secondary mb-2">
-                  Full Name
-                </label>
-
-                <input
-                  type="text"
-                  value={fullName}
-                  onChange={(e) => setFullName(e.target.value)}
-                  placeholder="Enter your full name"
-                  required
-                  className="w-full bg-surface-hover border border-surface-border rounded-xl px-4 py-3 text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent"
-                />
-              </div>
+              <input
+                type="text"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                placeholder="Full Name"
+                className="w-full bg-surface-hover border border-surface-border rounded-xl px-4 py-3 text-text-primary"
+                required
+              />
             )}
 
-            <div>
-              <label className="block text-sm text-text-secondary mb-2">
-                Email
-              </label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
+              className="w-full bg-surface-hover border border-surface-border rounded-xl px-4 py-3 text-text-primary"
+              required
+            />
 
+            <div className="relative">
               <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
+                type={showPassword ? 'text' : 'password'}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+                className="w-full bg-surface-hover border border-surface-border rounded-xl px-4 py-3 pr-10 text-text-primary"
                 required
-                className="w-full bg-surface-hover border border-surface-border rounded-xl px-4 py-3 text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent"
               />
+
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-text-muted"
+              >
+                {showPassword ? '🙈' : '👁'}
+              </button>
             </div>
 
-            <div>
-              <label className="block text-sm text-text-secondary mb-2">
-                Password
-              </label>
-
-              <div className="relative">
-                <input
-                  type={showPassword ? 'text' : 'password'}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Enter password"
-                  required
-                  className="w-full bg-surface-hover border border-surface-border rounded-xl px-4 py-3 pr-12 text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent"
-                />
-
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-text-muted hover:text-text-primary"
-                >
-                  {showPassword ? '🙈' : '👁'}
-                </button>
-              </div>
-
-              {isLogin && (
-                <div className="flex justify-end mt-2">
-                  <button
-                    type="button"
-                    onClick={handleForgotPassword}
-                    className="text-xs text-accent hover:underline"
-                  >
-                    Forgot Password?
-                  </button>
-                </div>
-              )}
-            </div>
+            {isLogin && (
+              <button
+                type="button"
+                onClick={handleForgotPassword}
+                className="text-xs text-accent hover:underline"
+              >
+                Forgot Password?
+              </button>
+            )}
 
             <button
               type="submit"
@@ -185,7 +169,7 @@ export default function Auth() {
 
           <button
             onClick={signInWithGoogle}
-            className="w-full py-3 rounded-xl border border-surface-border bg-surface-hover text-text-primary hover:bg-surface transition"
+            className="w-full py-3 rounded-xl border border-surface-border bg-surface-hover text-text-primary"
           >
             Continue with Google
           </button>
@@ -200,12 +184,11 @@ export default function Auth() {
             >
               {isLogin
                 ? "Don't have an account? Create one"
-                : 'Already have an account? Sign In'}
+                : "Already have an account? Sign In"}
             </button>
           </div>
 
         </div>
-
       </div>
     </div>
   )
