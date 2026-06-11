@@ -8,6 +8,7 @@ import Progress from './pages/Progress'
 import Profile from './pages/Profile'
 import Layout from './components/Layout'
 import Auth from './pages/Auth'
+import ResetPassword from './pages/ResetPassword'
 
 function ProtectedRoute({ children }) {
   const { user, loading } = useAuth()

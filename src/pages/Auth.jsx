@@ -8,6 +8,7 @@ export default function Auth() {
     signIn,
     signUp,
     signInWithGoogle,
+    resetPassword,
   } = useAuth()
 
   const [isLogin, setIsLogin] = useState(true)
@@ -33,11 +34,37 @@ export default function Auth() {
         await signIn(email, password)
       } else {
         await signUp(fullName, email, password)
+        setError('Account created successfully. Please check your email if verification is enabled.')
       }
     } catch (err) {
-      setError(err.message)
+      const message = err?.message?.toLowerCase() || ''
+
+      if (
+        message.includes('already registered') ||
+        message.includes('already exists') ||
+        message.includes('user already')
+      ) {
+        setError('An account with this email already exists.')
+      } else {
+        setError(err.message)
+      }
     } finally {
       setLoading(false)
+    }
+  }
+
+  const handleForgotPassword = async () => {
+    if (!email) {
+      setError('Please enter your email first.')
+      return
+    }
+
+    try {
+      setError('')
+      await resetPassword(email)
+      setError('Password reset link sent to your email.')
+    } catch (err) {
+      setError(err.message)
     }
   }
 
@@ -47,10 +74,8 @@ export default function Auth() {
       <div className="w-full max-w-md">
 
         <div className="text-center mb-8">
-          
-
           <h1 className="text-3xl font-semibold text-text-primary">
-            {isLogin ? 'Welcome Back' : 'Create Account'}
+            {isLogin ? 'Welcome Back' : 'Create your PrepPilot account'}
           </h1>
 
           <p className="text-text-secondary mt-2">
@@ -125,6 +150,18 @@ export default function Auth() {
                   {showPassword ? '🙈' : '👁'}
                 </button>
               </div>
+
+              {isLogin && (
+                <div className="flex justify-end mt-2">
+                  <button
+                    type="button"
+                    onClick={handleForgotPassword}
+                    className="text-xs text-accent hover:underline"
+                  >
+                    Forgot Password?
+                  </button>
+                </div>
+              )}
             </div>
 
             <button
@@ -135,7 +172,7 @@ export default function Auth() {
               {loading
                 ? 'Please wait...'
                 : isLogin
-                ? 'Login'
+                ? 'Sign In'
                 : 'Create Account'}
             </button>
           </form>
@@ -155,12 +192,15 @@ export default function Auth() {
 
           <div className="mt-6 text-center">
             <button
-              onClick={() => setIsLogin(!isLogin)}
+              onClick={() => {
+                setError('')
+                setIsLogin(!isLogin)
+              }}
               className="text-accent text-sm hover:underline"
             >
               {isLogin
-                ? "Don't have an account? Sign Up"
-                : 'Already have an account? Login'}
+                ? "Don't have an account? Create one"
+                : 'Already have an account? Sign In'}
             </button>
           </div>
 
