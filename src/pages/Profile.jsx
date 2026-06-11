@@ -11,14 +11,10 @@ const HOURS = ['1', '2', '3', '4', '5', '6']
 export default function Profile() {
   const { user } = useAuth()
   const [form, setForm] = useState({
-    targetCompany: 'Cisco',
+    target_company: 'Cisco',
     year: '3rd Year',
-    dsaLevel: 'Intermediate',
-    dailyHours: '3',
-    weakTopics: [],
-    leetcodeSolved: '0',
-    coreSubjectsCompleted: '0',
-    projects: '0',
+    dsa_level: 'Intermediate',
+    daily_hours: '3',
   })
   const [saving, setSaving] = useState(false)
   const [saved, setSaved] = useState(false)
@@ -162,67 +158,7 @@ export default function Profile() {
               </button>
             ))}
           </div>
-        </div>
-
-        {/* Weak topics */}
-        <div className="card p-6">
-          <label className="block text-sm font-medium text-text-primary mb-1">Weak topics</label>
-          <p className="text-xs text-text-muted mb-3">Select all that apply — your plan will prioritize these.</p>
-          <div className="flex flex-wrap gap-2">
-            {TOPICS.map(t => (
-              <button
-                key={t}
-                onClick={() => toggleTopic(t)}
-                className={`text-xs px-3 py-1.5 rounded-lg border transition-all duration-100 ${
-                  form.weakTopics.includes(t)
-                    ? 'bg-accent/10 border-accent text-accent'
-                    : 'border-surface-border text-text-secondary hover:border-accent/50'
-                }`}
-              >
-                {form.weakTopics.includes(t) && '✓ '}{t}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Stats for readiness score */}
-        <div className="card p-6">
-          <label className="block text-sm font-medium text-text-primary mb-1">Progress stats</label>
-          <p className="text-xs text-text-muted mb-4">Used to calculate your readiness score. Update as you go.</p>
-          <div className="grid grid-cols-3 gap-4">
-            <div>
-              <label className="text-xs text-text-secondary mb-1 block">LeetCode solved</label>
-              <input
-                type="number"
-                min="0"
-                className="input-field"
-                value={form.leetcodeSolved}
-                onChange={e => setForm(f => ({ ...f, leetcodeSolved: e.target.value }))}
-              />
-            </div>
-            <div>
-              <label className="text-xs text-text-secondary mb-1 block">Core subjects done (/ 5)</label>
-              <input
-                type="number"
-                min="0"
-                max="5"
-                className="input-field"
-                value={form.coreSubjectsCompleted}
-                onChange={e => setForm(f => ({ ...f, coreSubjectsCompleted: e.target.value }))}
-              />
-            </div>
-            <div>
-              <label className="text-xs text-text-secondary mb-1 block">Projects</label>
-              <input
-                type="number"
-                min="0"
-                className="input-field"
-                value={form.projects}
-                onChange={e => setForm(f => ({ ...f, projects: e.target.value }))}
-              />
-            </div>
-          </div>
-        </div>
+        </div> 
 
         <button
           onClick={handleSave}
