@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { AuthProvider, useAuth } from './hooks/useAuth'
+
 import Landing from './pages/Landing'
 import Dashboard from './pages/Dashboard'
 import Roadmap from './pages/Roadmap'
@@ -12,8 +13,10 @@ import ResetPassword from './pages/ResetPassword'
 
 function ProtectedRoute({ children }) {
   const { user, loading } = useAuth()
+
   if (loading) return <FullPageLoader />
   if (!user) return <Navigate to="/" replace />
+
   return children
 }
 
@@ -22,7 +25,9 @@ function FullPageLoader() {
     <div className="min-h-screen flex items-center justify-center bg-surface">
       <div className="flex flex-col items-center gap-4">
         <div className="w-8 h-8 border-2 border-accent border-t-transparent rounded-full animate-spin" />
-        <p className="text-text-secondary text-sm">Loading PrepPilot...</p>
+        <p className="text-text-secondary text-sm">
+          Loading PrepPilot...
+        </p>
       </div>
     </div>
   )
@@ -33,30 +38,38 @@ function AppRoutes() {
 
   return (
     <Routes>
-  <Route
-    path="/"
-    element={user ? <Navigate to="/dashboard" replace /> : <Landing />}
-  />
 
-  <Route path="/auth" element={<Auth />} />
+      {/* Public routes */}
+      <Route
+        path="/"
+        element={user ? <Navigate to="/dashboard" replace /> : <Landing />}
+      />
 
-  <Route
-    path="/"
-    element={
-      <ProtectedRoute>
-        <Layout />
-      </ProtectedRoute>
-    }
-  >
-    <Route path="dashboard" element={<Dashboard />} />
-    <Route path="roadmap" element={<Roadmap />} />
-    <Route path="leetcode" element={<LeetCode />} />
-    <Route path="progress" element={<Progress />} />
-    <Route path="profile" element={<Profile />} />
-  </Route>
+      <Route path="/auth" element={<Auth />} />
 
-  <Route path="*" element={<Navigate to="/" replace />} />
-</Routes>
+      {/* 🔥 IMPORTANT: Reset password MUST be public */}
+      <Route path="/reset-password" element={<ResetPassword />} />
+
+      {/* Protected routes */}
+      <Route
+        path="/"
+        element={
+          <ProtectedRoute>
+            <Layout />
+          </ProtectedRoute>
+        }
+      >
+        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="roadmap" element={<Roadmap />} />
+        <Route path="leetcode" element={<LeetCode />} />
+        <Route path="progress" element={<Progress />} />
+        <Route path="profile" element={<Profile />} />
+      </Route>
+
+      {/* fallback */}
+      <Route path="*" element={<Navigate to="/" replace />} />
+
+    </Routes>
   )
 }
 
