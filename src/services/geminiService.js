@@ -30,7 +30,7 @@ function extractJson(text) {
 }
 
 /* ---------------- GEMINI CALL ---------------- */
-async function callGemini(prompt, maxTokens = 4096) {
+async function callGemini(prompt, maxTokens = 1024) {
   const res = await fetch(GEMINI_URL, {
     method: 'POST',
     headers: {
@@ -44,7 +44,7 @@ async function callGemini(prompt, maxTokens = 4096) {
       ],
       generationConfig: {
         temperature: 0.4,
-        maxOutputTokens: maxTokens,
+        maxOutputTokens: 1024,
       },
     }),
   })
@@ -74,10 +74,19 @@ async function callGemini(prompt, maxTokens = 4096) {
 
 /* ---------------- DAILY PLAN ---------------- */
 export async function generateDailyPlan(profile) {
+  const {
+    currentDay = 1,
+    targetCompany,
+    dsaLevel,
+    dailyHours,
+    weakTopics,
+  } = profile
   const prompt = `
 You are PrepPilot AI.
 
 Generate a personalized placement preparation plan.
+
+This is Day ${currentDay} of the student's preparation journey.
 
 Return ONLY valid JSON.
 
@@ -99,26 +108,44 @@ Schema:
 }
 
 Rules:
+
 - Return EXACTLY 3 tasks.
-- Use ONLY task types:
+- Use ONLY:
   - dsa
   - concept
   - mcq
   - revision
-- DSA tasks must include lcNumber and lcUrl.
-- Non-DSA tasks must NOT include lcNumber or lcUrl.
-- Include at least one DSA task.
-- Include one OS/DBMS/CN concept task.
-- Keep descriptions short.
-- Return JSON only.
-- No markdown.
-- No explanation.
+
+- Include at least:
+  - 1 DSA task
+  - 1 OS/DBMS/CN concept task
+
+- DSA tasks MUST contain:
+  - lcNumber
+  - lcUrl
+
+- Non-DSA tasks MUST NOT contain:
+  - lcNumber
+  - lcUrl
+
+- Increase difficulty gradually as the day number increases.
+- Avoid repeating the same LeetCode questions.
+- If Day <= 7:
+  Focus on fundamentals.
+- If Day 8-20:
+  Focus on medium-level interview preparation.
+- If Day > 20:
+  Focus on company-style interview questions and revision.
 
 Student Profile:
-${JSON.stringify(profile, null, 2)}
-`
 
-  return await callGemini(prompt, 4096)
+${JSON.stringify(profile, null, 2)}
+
+Return JSON only.
+No markdown.
+No explanation.
+`
+return await callGemini(prompt, 1024)
 }
 
 /* ---------------- READINESS EXPLANATION ---------------- */
