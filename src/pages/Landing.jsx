@@ -1,4 +1,5 @@
 import { useAuth } from '../hooks/useAuth'
+import { useNavigate } from 'react-router-dom'
 
 const COMPANIES = ['Cisco', 'Google', 'Amazon', 'Microsoft', 'Optiver', 'Adobe', 'Flipkart', 'Atlassian']
 
@@ -26,7 +27,8 @@ const FEATURES = [
 ]
 
 export default function Landing() {
-  const { signInWithGoogle, loading } = useAuth()
+  const { loading } = useAuth()
+  const navigate = useNavigate()
 
   return (
     <div className="min-h-screen bg-surface grid-pattern">
@@ -36,8 +38,8 @@ export default function Landing() {
           <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center text-sm font-bold text-white">P</div>
           <span className="font-semibold text-text-primary">PrepPilot AI</span>
         </div>
-        <button onClick={signInWithGoogle} disabled={loading} className="btn-primary text-sm">
-          Sign in with Google
+        <button onClick={() => navigate('/auth')} disabled={loading} className="btn-primary text-sm">
+          Get Started
         </button>
       </nav>
 
@@ -60,7 +62,7 @@ export default function Landing() {
         </p>
 
         <button
-          onClick={signInWithGoogle}
+          onClick={() => navigate('/auth')}
           disabled={loading}
           className="btn-primary text-base px-8 py-3 glow-accent"
         >
@@ -94,8 +96,8 @@ export default function Landing() {
       {/* CTA strip */}
       <section className="border-t border-surface-border py-16 text-center">
         <p className="text-text-secondary text-sm mb-4">No credit card. No setup. Just start preparing.</p>
-        <button onClick={signInWithGoogle} disabled={loading} className="btn-primary">
-          Sign in with Google — it's free
+        <button onClick={() => navigate('/auth')} disabled={loading} className="btn-primary">
+          Create Free Account
         </button>
       </section>
     </div>

@@ -7,6 +7,7 @@ import LeetCode from './pages/LeetCode'
 import Progress from './pages/Progress'
 import Profile from './pages/Profile'
 import Layout from './components/Layout'
+import Auth from './pages/Auth'
 
 function ProtectedRoute({ children }) {
   const { user, loading } = useAuth()
@@ -31,23 +32,30 @@ function AppRoutes() {
 
   return (
     <Routes>
-      <Route path="/" element={user ? <Navigate to="/dashboard" replace /> : <Landing />} />
-      <Route
-        path="/"
-        element={
-          <ProtectedRoute>
-            <Layout />
-          </ProtectedRoute>
-        }
-      >
-        <Route path="dashboard" element={<Dashboard />} />
-        <Route path="roadmap" element={<Roadmap />} />
-        <Route path="leetcode" element={<LeetCode />} />
-        <Route path="progress" element={<Progress />} />
-        <Route path="profile" element={<Profile />} />
-      </Route>
-      <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
+  <Route
+    path="/"
+    element={user ? <Navigate to="/dashboard" replace /> : <Landing />}
+  />
+
+  <Route path="/auth" element={<Auth />} />
+
+  <Route
+    path="/"
+    element={
+      <ProtectedRoute>
+        <Layout />
+      </ProtectedRoute>
+    }
+  >
+    <Route path="dashboard" element={<Dashboard />} />
+    <Route path="roadmap" element={<Roadmap />} />
+    <Route path="leetcode" element={<LeetCode />} />
+    <Route path="progress" element={<Progress />} />
+    <Route path="profile" element={<Profile />} />
+  </Route>
+
+  <Route path="*" element={<Navigate to="/" replace />} />
+</Routes>
   )
 }
 
