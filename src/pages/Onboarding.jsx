@@ -69,14 +69,13 @@ export default function Onboarding() {
 
       // 🔥 UPSERT prevents duplicate profile errors
       const { error } = await supabase.from('profiles').upsert({
-        user_id: user.id,
-        full_name: form.full_name,
-        target_company: form.target_company,
-        year: form.year,
-        dsa_level: form.dsa_level,
-        daily_hours: Number(form.daily_hours),
-        weak_topics: form.weak_topics
-      })
+  user_id: user.id,
+  target_company: form.target_company,
+  year: form.year,
+  dsa_level: form.dsa_level,
+  daily_hours: form.daily_hours,
+  weak_topics: form.weak_topics
+})
 
       if (error) throw error
 
