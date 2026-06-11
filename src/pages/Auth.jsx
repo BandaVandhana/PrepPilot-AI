@@ -42,122 +42,130 @@ export default function Auth() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-surface px-6">
+    <div className="min-h-screen bg-surface grid-pattern flex items-center justify-center px-6">
 
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8">
+      <div className="w-full max-w-md">
 
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">
-            {isLogin ? 'Welcome Back 👋' : 'Create Account'}
+          <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-accent flex items-center justify-center text-white text-2xl font-bold">
+            P
+          </div>
+
+          <h1 className="text-3xl font-semibold text-text-primary">
+            {isLogin ? 'Welcome Back' : 'Create Account'}
           </h1>
 
-          <p className="text-gray-500 mt-2">
+          <p className="text-text-secondary mt-2">
             {isLogin
-              ? 'Login to continue your preparation'
-              : 'Start your placement journey today'}
+              ? 'Continue your placement preparation journey'
+              : 'Start preparing smarter with PrepPilot AI'}
           </p>
         </div>
 
-        {error && (
-          <div className="mb-4 rounded-lg bg-red-100 text-red-600 text-sm px-4 py-3">
-            {error}
-          </div>
-        )}
+        <div className="card p-8">
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-
-          {!isLogin && (
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Full Name
-              </label>
-
-              <input
-                type="text"
-                placeholder="Enter your full name"
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-                required
-                className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
-              />
+          {error && (
+            <div className="mb-5 rounded-xl bg-red-dim border border-red-pp/20 text-red-pp text-sm px-4 py-3">
+              {error}
             </div>
           )}
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Email
-            </label>
+          <form onSubmit={handleSubmit} className="space-y-4">
 
-            <input
-              type="email"
-              placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
+            {!isLogin && (
+              <div>
+                <label className="block text-sm text-text-secondary mb-2">
+                  Full Name
+                </label>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Password
-            </label>
+                <input
+                  type="text"
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                  placeholder="Enter your full name"
+                  required
+                  className="w-full bg-surface-hover border border-surface-border rounded-xl px-4 py-3 text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent"
+                />
+              </div>
+            )}
 
-            <div className="relative">
+            <div>
+              <label className="block text-sm text-text-secondary mb-2">
+                Email
+              </label>
+
               <input
-                type={showPassword ? 'text' : 'password'}
-                placeholder="Enter password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email"
                 required
-                className="w-full border border-gray-300 rounded-lg px-4 py-3 pr-12 text-black outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full bg-surface-hover border border-surface-border rounded-xl px-4 py-3 text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent"
               />
-
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
-              >
-                {showPassword ? '🙈' : '👁'}
-              </button>
             </div>
+
+            <div>
+              <label className="block text-sm text-text-secondary mb-2">
+                Password
+              </label>
+
+              <div className="relative">
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Enter password"
+                  required
+                  className="w-full bg-surface-hover border border-surface-border rounded-xl px-4 py-3 pr-12 text-text-primary placeholder:text-text-muted focus:outline-none focus:border-accent"
+                />
+
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-text-muted hover:text-text-primary"
+                >
+                  {showPassword ? '🙈' : '👁'}
+                </button>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="btn-primary w-full py-3"
+            >
+              {loading
+                ? 'Please wait...'
+                : isLogin
+                ? 'Login'
+                : 'Create Account'}
+            </button>
+          </form>
+
+          <div className="flex items-center gap-4 my-6">
+            <div className="h-px flex-1 bg-surface-border" />
+            <span className="text-xs text-text-muted">OR</span>
+            <div className="h-px flex-1 bg-surface-border" />
           </div>
 
           <button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white rounded-lg py-3 font-medium transition"
+            onClick={signInWithGoogle}
+            className="w-full py-3 rounded-xl border border-surface-border bg-surface-hover text-text-primary hover:bg-surface transition"
           >
-            {loading
-              ? 'Please wait...'
-              : isLogin
-              ? 'Login'
-              : 'Create Account'}
+            Continue with Google
           </button>
-        </form>
 
-        <div className="flex items-center my-6">
-          <div className="flex-1 h-px bg-gray-200"></div>
-          <span className="px-3 text-gray-500 text-sm">OR</span>
-          <div className="flex-1 h-px bg-gray-200"></div>
-        </div>
+          <div className="mt-6 text-center">
+            <button
+              onClick={() => setIsLogin(!isLogin)}
+              className="text-accent text-sm hover:underline"
+            >
+              {isLogin
+                ? "Don't have an account? Sign Up"
+                : 'Already have an account? Login'}
+            </button>
+          </div>
 
-        <button
-          onClick={signInWithGoogle}
-          className="w-full border border-gray-300 rounded-lg py-3 font-medium hover:bg-gray-50 transition"
-        >
-          Continue with Google
-        </button>
-
-        <div className="text-center mt-6">
-          <button
-            onClick={() => setIsLogin(!isLogin)}
-            className="text-blue-600 hover:underline text-sm"
-          >
-            {isLogin
-              ? "Don't have an account? Sign Up"
-              : 'Already have an account? Login'}
-          </button>
         </div>
 
       </div>
