@@ -47,9 +47,7 @@ export default function Auth() {
       <div className="w-full max-w-md">
 
         <div className="text-center mb-8">
-          <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-accent flex items-center justify-center text-white text-2xl font-bold">
-            P
-          </div>
+          
 
           <h1 className="text-3xl font-semibold text-text-primary">
             {isLogin ? 'Welcome Back' : 'Create Account'}
