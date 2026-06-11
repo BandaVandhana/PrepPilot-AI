@@ -34,17 +34,25 @@ export async function getDailyPlans(userId, limit = 7) {
   return data || []
 }
 
-export async function saveDailyPlan(userId, plan, tasks) {
+export async function saveDailyPlan(userId, date, tasks, planDay) {
   const { data, error } = await supabase
     .from('daily_plans')
     .upsert(
-      { user_id: userId, date: plan, tasks },
-      { onConflict: 'user_id,date' }
+      {
+        user_id: userId,
+        date,
+        tasks,
+        plan_day: planDay,
+      },
+      {
+        onConflict: 'user_id,date',
+      }
     )
     .select()
     .single()
 
   if (error) throw error
+
   return data
 }
 
@@ -96,4 +104,32 @@ export async function updateStreak(userId, currentStreak, bestStreak) {
 
   if (error) throw error
   return data
+}
+
+export async function getTodayPlan(userId) {
+  const today = new Date().toISOString().split('T')[0]
+
+  const { data, error } = await supabase
+    .from('daily_plans')
+    .select('*')
+    .eq('user_id', userId)
+    .eq('date', today)
+    .maybeSingle()
+
+  if (error) throw error
+
+  return data
+}
+
+export async function getLastPlanDay(userId) {
+  const { data, error } = await supabase
+    .from('daily_plans')
+    .select('plan_day')
+    .eq('user_id', userId)
+    .order('plan_day', { ascending: false })
+    .limit(1)
+
+  if (error) throw error
+
+  return data?.[0]?.plan_day || 0
 }
