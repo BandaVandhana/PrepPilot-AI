@@ -39,7 +39,7 @@ export default function Onboarding() {
         .from('profiles')
         .select('*')
         .eq('user_id', user.id)
-        .single()
+        .maybeSingle()
 
       if (data) {
         navigate('/dashboard')
@@ -68,14 +68,19 @@ export default function Onboarding() {
       setError('')
 
       // 🔥 UPSERT prevents duplicate profile errors
-      const { error } = await supabase.from('profiles').upsert({
-  user_id: user.id,
-  target_company: form.target_company,
-  year: form.year,
-  dsa_level: form.dsa_level,
-  daily_hours: form.daily_hours,
-  weak_topics: form.weak_topics
-})
+      const { error } = await supabase
+  .from('profiles')
+  .upsert({
+    user_id: user.id,
+    full_name: form.full_name,
+    target_company: form.target_company,
+    year: form.year,
+    dsa_level: form.dsa_level,
+    daily_hours: Number(form.daily_hours),
+    weak_topics: form.weak_topics,
+    updated_at: new Date()
+  },
+  { onConflict: 'user_id' })
 
       if (error) throw error
 
@@ -113,11 +118,11 @@ export default function Onboarding() {
           <div className="space-y-4">
 
             <input
-              className="input"
-              placeholder="Full Name"
-              value={form.full_name}
-              onChange={e => handleChange('full_name', e.target.value)}
-            />
+  className="input"
+  placeholder="Full Name"
+  value={form.full_name}
+  onChange={e => handleChange('full_name', e.target.value)}
+/>
 
             <select
               className="input"
@@ -154,7 +159,7 @@ export default function Onboarding() {
               className="input"
               placeholder="Daily Study Hours"
               value={form.daily_hours}
-              onChange={e => handleChange('daily_hours', e.target.value)}
+              onChange={e => handleChange('daily_hours', Number(e.target.value))}
             />
 
             <div className="flex gap-2">
