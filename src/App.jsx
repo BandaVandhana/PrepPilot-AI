@@ -16,7 +16,7 @@ function ProtectedRoute({ children }) {
   const { user, loading } = useAuth()
 
   if (loading) return <FullPageLoader />
-  if (!user) return <Navigate to="/" replace />
+  if (!user) return <Navigate to="/auth" replace />
 
   return children
 }
@@ -40,15 +40,22 @@ function AppRoutes() {
   return (
     <Routes>
 
-      {/* Public */}
-      <Route path="/" element={user ? <Navigate to="/dashboard" /> : <Landing />} />
+      {/* ================= PUBLIC ROUTES ================= */}
+
+      <Route
+        path="/"
+        element={
+          user
+            ? <Navigate to="/dashboard" replace />
+            : <Landing />
+        }
+      />
+
       <Route path="/auth" element={<Auth />} />
       <Route path="/reset-password" element={<ResetPassword />} />
 
-      {/* Onboarding (public BUT guarded inside page later if needed) */}
-      <Route path="/onboarding" element={<Onboarding />} />
+      {/* ================= PROTECTED ROUTES ================= */}
 
-      {/* Protected layout wrapper */}
       <Route
         element={
           <ProtectedRoute>
@@ -56,15 +63,21 @@ function AppRoutes() {
           </ProtectedRoute>
         }
       >
+
+        {/* onboarding MUST be protected */}
+        <Route path="/onboarding" element={<Onboarding />} />
+
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/roadmap" element={<Roadmap />} />
         <Route path="/leetcode" element={<LeetCode />} />
         <Route path="/progress" element={<Progress />} />
         <Route path="/profile" element={<Profile />} />
+
       </Route>
 
-      {/* fallback */}
-      <Route path="*" element={<Navigate to="/" />} />
+      {/* ================= FALLBACK ================= */}
+
+      <Route path="*" element={<Navigate to="/" replace />} />
 
     </Routes>
   )
