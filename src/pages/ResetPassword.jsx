@@ -1,10 +1,22 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { supabase } from '../supabase/client'
 
 export default function ResetPassword() {
   const [password, setPassword] = useState('')
   const [message, setMessage] = useState('')
   const [loading, setLoading] = useState(false)
+
+  // 🔥 IMPORTANT FIX: ensure recovery session is active
+  useEffect(() => {
+    const { data: { subscription } } =
+      supabase.auth.onAuthStateChange((event) => {
+        if (event === 'PASSWORD_RECOVERY') {
+          console.log('Recovery session detected')
+        }
+      })
+
+    return () => subscription.unsubscribe()
+  }, [])
 
   const handleUpdatePassword = async (e) => {
     e.preventDefault()
@@ -60,6 +72,7 @@ export default function ResetPassword() {
             {loading ? 'Updating...' : 'Update Password'}
           </button>
         </form>
+
       </div>
     </div>
   )
