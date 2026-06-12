@@ -117,7 +117,7 @@ const studyHours =
   />
 
 </div>
-<div className="card p-5 mb-8">
+{/* <div className="card p-5 mb-8">
 
   <h2 className="font-medium mb-4">
     Study Analytics
@@ -147,7 +147,7 @@ const studyHours =
 
   </div>
 
-</div>
+</div> */}
 <div className="card p-5 mb-8">
 
   <h2 className="font-medium mb-4">
