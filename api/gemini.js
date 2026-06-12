@@ -2,6 +2,7 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).end()
 
   const API_KEY = process.env.GEMINI_API_KEY  // no VITE_ prefix
+  console.log('KEY:', API_KEY?.slice(0, 10))  
 
   const response = await fetch(
     `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent?key=${API_KEY}`,
