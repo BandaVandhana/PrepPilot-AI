@@ -26,6 +26,10 @@ export default function Progress() {
       getDailyPlans(user.id, 14),
       getProgressLogs(user.id),
     ]).then(([s, p, l]) => {
+      console.log("Streak:", s)
+      console.log("Plans:", p)
+      console.log("Logs:", l)
+
       setStreak(s)
       setPlans(p)
       setLogs(l)

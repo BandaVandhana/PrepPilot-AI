@@ -56,14 +56,20 @@ export async function saveDailyPlan(userId, date, tasks, planDay) {
   return data
 }
 
-export async function getProgressLogs(userId, date) {
-  const { data, error } = await supabase
+export async function getProgressLogs(userId, date = null) {
+  let query = supabase
     .from('progress_logs')
     .select('*')
     .eq('user_id', userId)
-    .eq('date', date)
+
+  if (date) {
+    query = query.eq('date', date)
+  }
+
+  const { data, error } = await query
 
   if (error) throw error
+
   return data || []
 }
 
