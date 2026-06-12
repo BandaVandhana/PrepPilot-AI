@@ -9,10 +9,10 @@ export default {
       },
       colors: {
         surface: {
-          DEFAULT: '#F4F0FF',
-          card: '#FFFFFF',
-          hover: '#EDE8FF',
-          border: '#DDD5FA',
+          DEFAULT: ' #F6F1E8',
+          card: '#FFF8EE',
+          hover: '#F2E9DD',
+          border: '#E3D6C7',
         },
         accent: {
           DEFAULT: '#7C3AED',
@@ -32,9 +32,9 @@ export default {
           dim: 'rgba(239,68,68,0.12)',
         },
         text: {
-          primary: '#1A0A3B',
-          secondary: '#5B4B8A',
-          muted: '#8B7BB8',
+          primary: '#2A1F3D',
+          secondary: '#5A4B6A',
+          muted: '#8A7A98',
         },
       },
     },
