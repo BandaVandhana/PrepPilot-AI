@@ -34,10 +34,10 @@ export default function Landing() {
     <div className="min-h-screen bg-surface grid-pattern">
       {/* Nav */}
       <nav className="flex items-center justify-between px-8 py-5 border-b border-surface-border bg-surface/80 backdrop-blur-sm sticky top-0 z-10">
-        <div className="flex items-center gap-2.5">
+        {/* <div className="flex items-center gap-2.5">
           <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center text-sm font-bold text-white">P</div>
           <span className="font-semibold text-text-primary">PrepPilot AI</span>
-        </div>
+        </div> */}
         <button onClick={() => navigate('/auth')} disabled={loading} className="btn-primary text-sm">
           Get Started
         </button>
