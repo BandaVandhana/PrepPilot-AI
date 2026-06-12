@@ -12,7 +12,7 @@
 
   * {
     scrollbar-width: thin;
-    scrollbar-color: #252D3D transparent;
+    scrollbar-color: #DDD5FA transparent;
   }
 
   ::-webkit-scrollbar {
@@ -91,7 +91,7 @@
   }
 
   .grid-pattern {
-    background-image: radial-gradient(circle, #252D3D 1px, transparent 1px);
+    background-image: radial-gradient(circle, #D8CEF7 1px, transparent 1px);
     background-size: 28px 28px;
   }
 }
