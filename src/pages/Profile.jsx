@@ -46,10 +46,6 @@ export default function Profile() {
       year: form.year,
       dsa_level: form.dsaLevel,
       daily_hours: parseInt(form.dailyHours),
-      weak_topics: form.weakTopics,
-      leetcode_solved: parseInt(form.leetcodeSolved),
-      core_subjects_completed: parseInt(form.coreSubjectsCompleted),
-      projects: parseInt(form.projects),
     })
 
     setSaved(true)
