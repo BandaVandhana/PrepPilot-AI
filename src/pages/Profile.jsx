@@ -28,7 +28,7 @@ export default function Profile() {
         setForm(f => ({
           ...f,
           ...p,
-          daily_hours: String(p.daily_hours || 3),
+          daily_hours: String(p.daily_hours),
         }))
       }
     })
