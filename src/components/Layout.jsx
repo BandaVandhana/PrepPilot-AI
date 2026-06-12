@@ -28,22 +28,11 @@ export default function Layout() {
   return (
     <div className="flex min-h-screen bg-surface">
       {/* Sidebar */}
-      <aside className="w-60 flex flex-col border-r border-surface-border bg-surface-card shrink-0">
+      <aside className="w-60 h-screen sticky top-0 flex flex-col border-r border-surface-border bg-surface-card shrink-0">
         {/* Logo */}
-        <div className="px-5 py-5 border-b border-surface-border">
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center text-sm font-bold text-white">
-              P
-            </div>
-            <div>
-              <p className="text-sm font-semibold text-text-primary leading-none">PrepPilot</p>
-              <p className="text-xs text-text-muted leading-none mt-0.5">AI Mentor</p>
-            </div>
-          </div>
-        </div>
-
+        
         {/* Nav */}
-        <nav className="flex-1 px-3 py-4 space-y-1">
+        <nav className="flex-1 px-3 py-6 space-y-1">
           {NAV.map(({ to, icon, label }) => (
             <NavLink
               key={to}
@@ -82,7 +71,7 @@ export default function Layout() {
       </aside>
 
       {/* Main content */}
-      <main className="flex-1 overflow-auto">
+      <main className="flex-1 h-screen overflow-y-auto">
         <Outlet />
       </main>
     </div>
