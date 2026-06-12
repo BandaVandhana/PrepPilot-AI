@@ -189,7 +189,7 @@ const studyHours =
         </div>
       ) : (
         <div className="space-y-3">
-          {plans
+          {[...plans]
           .sort((a, b) => b.plan_day - a.plan_day)
           .map(plan => {
             const taskCount = plan.tasks?.length || 0
