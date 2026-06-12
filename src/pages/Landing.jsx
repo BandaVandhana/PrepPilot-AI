@@ -77,7 +77,7 @@ export default function Landing() {
 
       {/* Features */}
       {/* Features */}
-<section className="max-w-5xl mx-auto px-8 pb-24">
+<section className="max-w-5xl mx-auto px-8 pb-12">
   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
 
     {FEATURES
@@ -99,7 +99,7 @@ export default function Landing() {
 </section>
 
       {/* CTA strip */}
-      <section className="border-t border-surface-border py-16 text-center">
+      <section className="border-t border-surface-border py-10 text-center -mt-2">
         <p className="text-text-secondary text-sm mb-4">No credit card. No setup. Just start preparing.</p>
         <button onClick={() => navigate('/auth')} disabled={loading} className="btn-primary">
           Create Free Account
