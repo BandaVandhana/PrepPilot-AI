@@ -14,7 +14,7 @@
 
 - React + Vite + Tailwind CSS
 - Supabase (Auth + Postgres + Row Level Security)
-- Gemini 1.5 Flash API
+- Gemini 3.1 Flash Lite API
 - Vercel (frontend hosting)
 
 ## Setup
@@ -22,7 +22,7 @@
 ### 1. Clone and install
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/PrepPilot-AI
+git clone https://github.com//PrepPilot-AI
 cd PrepPilot-AI
 npm install
 ```
