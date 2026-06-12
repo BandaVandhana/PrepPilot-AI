@@ -5,7 +5,6 @@ import { getProfile, upsertProfile } from '../services/profileService'
 const COMPANIES = ['Cisco', 'Google', 'Amazon', 'Microsoft', 'Adobe', 'Atlassian', 'Optiver', 'Flipkart', 'Walmart', 'Zoho', 'Infosys', 'TCS', 'Wipro']
 const YEARS = ['1st Year', '2nd Year', '3rd Year', '4th Year']
 const LEVELS = ['Beginner', 'Intermediate', 'Advanced']
-const TOPICS = ['Arrays', 'Strings', 'Linked List', 'Trees', 'Graphs', 'DP', 'Heap', 'Binary Search', 'Backtracking', 'Greedy', 'OS', 'DBMS', 'CN', 'OOP']
 const HOURS = ['1', '2', '3', '4', '5', '6']
 
 export default function Profile() {
@@ -28,24 +27,16 @@ export default function Profile() {
       .finally(() => setLoading(false))
   }, [user])
 
-  const toggleTopic = (topic) => {
-    setForm(f => ({
-      ...f,
-      weakTopics: f.weakTopics.includes(topic)
-        ? f.weakTopics.filter(t => t !== topic)
-        : [...f.weakTopics, topic],
-    }))
-  }
 
   const handleSave = async () => {
   setSaving(true)
 
   try {
     await upsertProfile(user.id, {
-      target_company: form.targetCompany,
+      target_company: form.target_company,
       year: form.year,
-      dsa_level: form.dsaLevel,
-      daily_hours: parseInt(form.dailyHours),
+      dsa_level: form.dsa_level,
+      daily_hours: parseInt(form.daily_hours),
     })
 
     setSaved(true)
@@ -74,9 +65,9 @@ export default function Profile() {
             {COMPANIES.map(c => (
               <button
                 key={c}
-                onClick={() => setForm(f => ({ ...f, targetCompany: c }))}
+                onClick={() => setForm(f => ({ ...f, target_company: c }))}
                 className={`text-xs px-3 py-1.5 rounded-lg border transition-all duration-100 ${
-                  form.targetCompany === c
+                  form.target_company === c
                     ? 'bg-accent border-accent text-white'
                     : 'border-surface-border text-text-secondary hover:border-accent/50 hover:text-text-primary'
                 }`}
@@ -88,8 +79,8 @@ export default function Profile() {
           <input
             className="input-field mt-3 text-sm"
             placeholder="Or type a company name..."
-            value={COMPANIES.includes(form.targetCompany) ? '' : form.targetCompany}
-            onChange={e => setForm(f => ({ ...f, targetCompany: e.target.value }))}
+            value={COMPANIES.includes(form.target_company) ? '' : form.target_company}
+            onChange={e => setForm(f => ({ ...f, target_company: e.target.value }))}
           />
         </div>
 
@@ -123,8 +114,8 @@ export default function Profile() {
                     type="radio"
                     name="level"
                     value={l}
-                    checked={form.dsaLevel === l}
-                    onChange={() => setForm(f => ({ ...f, dsaLevel: l }))}
+                    checked={form.dsa_level === l}
+                    onChange={() => setForm(f => ({ ...f, dsa_level: l }))}
                     className="accent-accent"
                   />
                   <span className="text-sm text-text-secondary group-hover:text-text-primary transition-colors">{l}</span>
@@ -143,9 +134,9 @@ export default function Profile() {
             {HOURS.map(h => (
               <button
                 key={h}
-                onClick={() => setForm(f => ({ ...f, dailyHours: h }))}
+                onClick={() => setForm(f => ({ ...f, daily_hours: h }))}
                 className={`flex-1 py-2.5 rounded-xl border text-sm font-medium transition-all ${
-                  form.dailyHours === h
+                  form.daily_hours === h
                     ? 'bg-accent border-accent text-white'
                     : 'border-surface-border text-text-secondary hover:border-accent/50'
                 }`}

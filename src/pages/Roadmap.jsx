@@ -19,6 +19,7 @@ export default function Roadmap() {
   const [generating, setGenerating] = useState(false)
   const [error, setError] = useState(null)
   const today = getTodayDate()
+  const [history, setHistory] = useState([])
 
   useEffect(() => {
   if (!user) return
@@ -36,11 +37,12 @@ export default function Roadmap() {
         completed[l.task_name] = l.completed
       })
       setCompletedTasks(completed)
+      setHistory(plans)
 
       const todayPlan = plans.find(p => p.date === today)
 
       if (todayPlan) {
-  setPlan({
+      setPlan({
     greeting: 'Continue your preparation journey 🚀',
     tasks: todayPlan.tasks || [],
     planDay: todayPlan.plan_day,
@@ -83,7 +85,6 @@ export default function Roadmap() {
       targetCompany: profile.target_company || profile.targetCompany,
       dsaLevel: profile.dsa_level || profile.dsaLevel,
       dailyHours: profile.daily_hours || profile.dailyHours,
-      weakTopics: profile.weak_topics || profile.weakTopics || [],
       currentDay: nextDay,
     })
 
@@ -110,7 +111,7 @@ export default function Roadmap() {
   }
 }
 
-  const toggleTask = async (taskId, taskTitle) => {
+  const toggleTask = async (taskTitle) => {
   const next = !completedTasks[taskTitle]
 
   setCompletedTasks(c => ({
@@ -180,10 +181,11 @@ export default function Roadmap() {
       {plan && (
         <>
         <div className="mb-4">
-  <span className="text-xs px-3 py-1 rounded-full bg-accent/10 text-accent">
-  Day {plan.planDay || 1}
-</span>
-</div>  
+        <span className="text-xs px-3 py-1 rounded-full bg-accent/10 text-accent">
+        Day {plan.planDay || 1}
+        
+        </span>
+        </div>  
         {plan.greeting && (
             <div className="mb-5 p-4 rounded-xl bg-accent-glow border border-accent/20">
               <p className="text-sm text-text-secondary">{plan.greeting}</p>
@@ -217,14 +219,15 @@ export default function Roadmap() {
               const done = completedTasks[task.title]
               return (
                 <div
-                  key={task.id}
+                  key={task.id || i}
                   className={`card p-4 flex items-start gap-4 transition-all duration-150 ${
                     done ? 'opacity-60' : 'hover:border-surface-border/80'
+                    
                   }`}
                 >
                   {/* Checkbox */}
                   <button
-                    onClick={() => toggleTask(task.id, task.title)}
+                    onClick={() => toggleTask(task.title)}
                     className={`w-5 h-5 rounded border-2 shrink-0 mt-0.5 flex items-center justify-center transition-all ${
                       done
                         ? 'bg-green-pp border-green-pp'
@@ -265,6 +268,38 @@ export default function Roadmap() {
               )
             })}
           </div>
+          {history.filter(p => p.date !== today).length > 0 && (
+  <div className="mt-10">
+    <h2 className="text-lg font-semibold text-text-primary mb-4">
+      Previous Plans
+    </h2>
+
+    <div className="space-y-3">
+      {history
+        .filter(p => p.date !== today)
+        .sort((a, b) => b.plan_day - a.plan_day)
+        .map(p => (
+          <div key={p.id} className="card p-4">
+            <div className="flex justify-between items-center mb-2">
+              <span className="text-sm font-medium text-accent">
+                Day {p.plan_day}
+              </span>
+
+              <span className="text-xs text-text-muted">
+                {p.date}
+              </span>
+            </div>
+
+            {p.tasks?.map((task, idx) => (
+              <p key={idx} className="text-sm text-text-secondary">
+                • {task.title}
+              </p>
+            ))}
+          </div>
+        ))}
+    </div>
+  </div>
+)}
         </>
       )}
     </div>
