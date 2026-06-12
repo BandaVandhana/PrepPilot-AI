@@ -20,12 +20,21 @@ export default function Profile() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    if (!user) return
-    getProfile(user.id)
-      .then(p => { if (p) setForm(f => ({ ...f, ...p })) })
-      .catch(console.error)
-      .finally(() => setLoading(false))
-  }, [user])
+  if (!user) return
+
+  getProfile(user.id)
+    .then(p => {
+      if (p) {
+        setForm(f => ({
+          ...f,
+          ...p,
+          daily_hours: String(p.daily_hours || 3),
+        }))
+      }
+    })
+    .catch(console.error)
+    .finally(() => setLoading(false))
+}, [user])
 
 
   const handleSave = async () => {
