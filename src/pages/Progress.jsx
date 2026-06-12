@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useAuth } from '../hooks/useAuth'
-import { getProfile, getDailyPlans, getProgressLogs, getStreak } from '../services/profileService'
+import { getDailyPlans, getProgressLogs, getStreak } from '../services/profileService'
 
 function StatCard({ label, value, sub, color = 'text-text-primary' }) {
   return (
@@ -16,6 +16,7 @@ export default function Progress() {
   const { user } = useAuth()
   const [streak, setStreak] = useState(null)
   const [plans, setPlans] = useState([])
+  const [logs, setLogs] = useState([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -23,14 +24,38 @@ export default function Progress() {
     Promise.all([
       getStreak(user.id),
       getDailyPlans(user.id, 14),
-    ]).then(([s, p]) => {
+      getProgressLogs(user.id),
+    ]).then(([s, p, l]) => {
       setStreak(s)
       setPlans(p)
+      setLogs(l)
     }).finally(() => setLoading(false))
   }, [user])
 
   const currentStreak = streak?.current_streak || 0
   const bestStreak = streak?.best_streak || 0
+  const totalTasksCompleted =
+  logs.filter(l => l.completed).length
+
+const currentDay =
+  Math.max(
+    0,
+    ...plans.map(p => Number(p.plan_day) || 0)
+  )
+
+const totalStudyHours =
+  plans.reduce((sum, plan) => {
+    const mins =
+      plan.tasks?.reduce(
+        (t, task) => t + (task.duration || 0),
+        0
+      ) || 0
+
+    return sum + mins
+  }, 0)
+
+const studyHours =
+  (totalStudyHours / 60).toFixed(1)
 
   if (loading) return (
     <div className="flex items-center justify-center h-64">
@@ -64,11 +89,96 @@ export default function Progress() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-3 gap-4 mb-8">
-        <StatCard label="Current streak" value={`${currentStreak}d`} color="text-green-pp" />
-        <StatCard label="Best streak" value={`${bestStreak}d`} />
-        <StatCard label="Plans generated" value={plans.length} sub="last 14 days" />
-      </div>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+
+  <StatCard
+    label="Current Streak"
+    value={`${currentStreak}d`}
+    color="text-green-pp"
+  />
+
+  <StatCard
+    label="Best Streak"
+    value={`${bestStreak}d`}
+  />
+
+  <StatCard
+    label="Current Day"
+    value={`Day ${currentDay}`}
+  />
+
+  <StatCard
+    label="Tasks Done"
+    value={totalTasksCompleted}
+  />
+
+</div>
+<div className="card p-5 mb-8">
+
+  <h2 className="font-medium mb-4">
+    Study Analytics
+  </h2>
+
+  <div className="grid grid-cols-2 gap-4">
+
+    <div>
+      <p className="text-xs text-text-muted">
+        Plans Generated
+      </p>
+
+      <p className="text-xl font-semibold">
+        {plans.length}
+      </p>
+    </div>
+
+    <div>
+      <p className="text-xs text-text-muted">
+        Study Hours
+      </p>
+
+      <p className="text-xl font-semibold">
+        {studyHours}h
+      </p>
+    </div>
+
+  </div>
+
+</div>
+<div className="card p-5 mb-8">
+
+  <h2 className="font-medium mb-4">
+    Achievements
+  </h2>
+
+  <div className="flex flex-wrap gap-2">
+
+    {plans.length >= 1 && (
+      <span className="px-3 py-1 rounded-full bg-accent/10 text-accent text-xs">
+        🚀 First Plan
+      </span>
+    )}
+
+    {currentStreak >= 3 && (
+      <span className="px-3 py-1 rounded-full bg-green-dim text-green-pp text-xs">
+        🔥 3 Day Streak
+      </span>
+    )}
+
+    {currentStreak >= 7 && (
+      <span className="px-3 py-1 rounded-full bg-green-dim text-green-pp text-xs">
+        🔥 7 Day Streak
+      </span>
+    )}
+
+    {totalTasksCompleted >= 25 && (
+      <span className="px-3 py-1 rounded-full bg-amber-dim text-amber-pp text-xs">
+        🏆 25 Tasks
+      </span>
+    )}
+
+  </div>
+
+</div>
 
       {/* Recent plans */}
       <h2 className="text-sm font-semibold text-text-primary mb-4">Recent activity</h2>
@@ -79,7 +189,9 @@ export default function Progress() {
         </div>
       ) : (
         <div className="space-y-3">
-          {plans.map(plan => {
+          {plans
+          .sort((a, b) => b.plan_day - a.plan_day)
+          .map(plan => {
             const taskCount = plan.tasks?.length || 0
             const date = new Date(plan.date)
             const isToday = plan.date === new Date().toISOString().split('T')[0]
