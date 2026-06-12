@@ -149,39 +149,37 @@ const studyHours =
 
 </div> */}
 <div className="card p-5 mb-8">
-
-  <h2 className="font-medium mb-4">
+  <h2 className="font-medium mb-4 text-text-primary">
     Achievements
   </h2>
 
   <div className="flex flex-wrap gap-2">
 
     {plans.length >= 1 && (
-      <span className="px-3 py-1 rounded-full bg-accent/10 text-accent text-xs">
+      <span className="px-3 py-1 rounded-full text-xs font-semibold bg-accent/15 text-accent border border-accent/30">
         🚀 First Plan
       </span>
     )}
 
     {currentStreak >= 3 && (
-      <span className="px-3 py-1 rounded-full bg-green-dim text-green-pp text-xs">
+      <span className="px-3 py-1 rounded-full text-xs font-semibold bg-green-pp/15 text-green-pp border border-green-pp/30">
         🔥 3 Day Streak
       </span>
     )}
 
     {currentStreak >= 7 && (
-      <span className="px-3 py-1 rounded-full bg-green-dim text-green-pp text-xs">
+      <span className="px-3 py-1 rounded-full text-xs font-semibold bg-green-pp/20 text-green-pp border border-green-pp/40">
         🔥 7 Day Streak
       </span>
     )}
 
     {totalTasksCompleted >= 25 && (
-      <span className="px-3 py-1 rounded-full bg-amber-dim text-amber-pp text-xs">
+      <span className="px-3 py-1 rounded-full text-xs font-semibold bg-amber-pp/15 text-amber-pp border border-amber-pp/30">
         🏆 25 Tasks
       </span>
     )}
 
   </div>
-
 </div>
 
       {/* Recent plans */}

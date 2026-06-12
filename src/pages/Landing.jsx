@@ -19,11 +19,6 @@ const FEATURES = [
     title: 'Streak & progress tracking',
     body: 'Complete ≥ 60% of your daily tasks to keep your streak alive. One day at a time.',
   },
-  {
-    icon: '📊',
-    title: 'Readiness score',
-    body: 'A weighted score across DSA, core CS, projects, and consistency. Know exactly where you stand.',
-  },
 ]
 
 export default function Landing() {
@@ -81,17 +76,27 @@ export default function Landing() {
       </section>
 
       {/* Features */}
-      <section className="max-w-4xl mx-auto px-8 pb-24">
-        <div className="grid grid-cols-2 gap-4">
-          {FEATURES.map(({ icon, title, body }) => (
-            <div key={title} className="card p-6">
-              <div className="text-2xl mb-3">{icon}</div>
-              <h3 className="text-sm font-semibold text-text-primary mb-2">{title}</h3>
-              <p className="text-text-secondary text-sm leading-relaxed">{body}</p>
-            </div>
-          ))}
+      {/* Features */}
+<section className="max-w-5xl mx-auto px-8 pb-24">
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+    {FEATURES
+      .filter(f => f.title !== 'Readiness score')
+      .map(({ icon, title, body }) => (
+        <div key={title} className="card p-6">
+          <div className="text-2xl mb-3">{icon}</div>
+
+          <h3 className="text-sm font-semibold text-text-primary mb-2">
+            {title}
+          </h3>
+
+          <p className="text-text-secondary text-sm leading-relaxed">
+            {body}
+          </p>
         </div>
-      </section>
+      ))}
+  </div>
+</section>
 
       {/* CTA strip */}
       <section className="border-t border-surface-border py-16 text-center">
