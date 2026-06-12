@@ -11,6 +11,62 @@ export async function getProfile(userId) {
   return data
 }
 
+export async function calculateStreak(userId) {
+  const plans = await getDailyPlans(userId, 365)
+  const logs = await getProgressLogs(userId)
+
+  let streak = 0
+  let best = 0
+
+  const planMap = {}
+
+  plans.forEach(plan => {
+    planMap[plan.date] = {
+      total: plan.tasks?.length || 0,
+      completed: 0,
+    }
+  })
+
+  logs.forEach(log => {
+    if (
+      log.completed &&
+      planMap[log.date]
+    ) {
+      planMap[log.date].completed++
+    }
+  })
+
+  const dates = Object.keys(planMap)
+  .sort((a, b) => new Date(b) - new Date(a))
+
+  for (const date of dates) {
+    const day = planMap[date]
+
+    const percent =
+      day.total === 0
+        ? 0
+        : (day.completed / day.total) * 100
+
+    if (percent >= 60) {
+      streak++
+      best = Math.max(best, streak)
+    } else {
+      break
+    }
+  }
+
+  await updateStreak(
+    userId,
+    streak,
+    streak
+  )
+
+  return {
+    current_streak: streak,
+    best_streak: streak,
+  }
+}
+
 export async function upsertProfile(userId, profile) {
   const { data, error } = await supabase
     .from('profiles')

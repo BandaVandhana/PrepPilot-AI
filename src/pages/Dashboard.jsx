@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
 import { useProfile } from '../hooks/useProfile'
 import {
-  getStreak,
+  calculateStreak,
   getDailyPlans,
   getProgressLogs,
 } from '../services/profileService'
@@ -47,7 +47,7 @@ export default function Dashboard() {
     const load = async () => {
       try {
         const [s, pl, logs] = await Promise.all([
-          getStreak(user.id),
+          calculateStreak(user.id),
           getDailyPlans(user.id, 7),
           getProgressLogs(user.id, today),
         ])

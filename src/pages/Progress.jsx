@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useAuth } from '../hooks/useAuth'
-import { getDailyPlans, getProgressLogs, getStreak } from '../services/profileService'
+import { getDailyPlans, getProgressLogs, calculateStreak } from '../services/profileService'
 
 function StatCard({ label, value, sub, color = 'text-text-primary' }) {
   return (
@@ -22,7 +22,7 @@ export default function Progress() {
   useEffect(() => {
     if (!user) return
     Promise.all([
-      getStreak(user.id),
+      calculateStreak(user.id),
       getDailyPlans(user.id, 14),
       getProgressLogs(user.id),
     ]).then(([s, p, l]) => {
