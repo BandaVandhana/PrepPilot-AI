@@ -33,7 +33,7 @@ export default function Landing() {
   return (
     <div className="min-h-screen bg-surface grid-pattern">
       {/* Nav */}
-      <nav className="flex items-center px-6 py-5 border-b border-surface-border bg-surface/80 backdrop-blur-sm sticky top-0 z-10">
+      {/* <nav className="flex items-center px-6 py-5 border-b border-surface-border bg-surface/80 backdrop-blur-sm sticky top-0 z-10">
   <button
     onClick={() => navigate('/auth')}
     disabled={loading}
@@ -41,7 +41,7 @@ export default function Landing() {
   >
     Get Started
   </button>
-</nav>
+</nav> */}
 
       {/* Hero */}
       <section className="max-w-3xl mx-auto px-8 pt-24 pb-16 text-center">
