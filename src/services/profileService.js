@@ -81,6 +81,17 @@ export async function upsertProgressLog(userId, taskName, completed, date) {
   return data
 }
 
+export async function getUserStats(userId) {
+  const { data, error } = await supabase
+    .from('user_stats')
+    .select('*')
+    .eq('user_id', userId)
+    .single()
+
+  if (error) throw error
+  return data
+}
+
 export async function getStreak(userId) {
   const { data, error } = await supabase
     .from('streaks')
