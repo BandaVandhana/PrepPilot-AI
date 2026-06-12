@@ -103,9 +103,12 @@ export default function Dashboard() {
       </h1>
 
       <p className="text-text-secondary text-sm mt-1 mb-6">
-        Target: {profile?.target_company || 'Not Set'} •{' '}
-        {currentStreak} day streak
-      </p>
+  Target:
+  <span className="text-text-primary font-semibold ml-1">
+    {profile?.target_company || 'Not Set'}
+  </span>
+  {' '}• {currentStreak} day streak
+</p>
 
       {/* MAIN STATS */}
 
@@ -116,9 +119,9 @@ export default function Dashboard() {
             Target Company
           </p>
 
-          <p className="text-lg font-semibold mt-1">
-            {profile?.target_company || '-'}
-          </p>
+          <p className="text-lg font-semibold mt-1 text-text-primary">
+  {profile?.target_company || '-'}
+</p>
         </div>
 
         <div className="card p-4">

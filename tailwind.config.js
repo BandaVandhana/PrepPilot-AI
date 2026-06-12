@@ -32,9 +32,9 @@ export default {
           dim: 'rgba(239,68,68,0.12)',
         },
         text: {
-          primary: '#2A1F3D',
-          secondary: '#5A4B6A',
-          muted: '#8A7A98',
+          primary: '#241A33',
+          secondary: '#4B3D63',
+          muted: '#7A6A8A',
         },
       },
     },
