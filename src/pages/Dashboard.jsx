@@ -23,7 +23,7 @@ function QuickAction({ icon, label, to, sub }) {
       </p>
 
       {sub && (
-        <p className="text-xs text-text-muted mt-1">
+        <p className="text-xs text-text-secondary mt-1">
           {sub}
         </p>
       )}
@@ -97,75 +97,73 @@ export default function Dashboard() {
     <div className="max-w-5xl mx-auto px-6 py-10">
 
       {/* HEADER */}
-
       <h1 className="text-2xl font-semibold text-text-primary">
         Hey {name} 👋
       </h1>
 
-      <p className="text-text-secondary text-sm mt-1 mb-6">
-  Target:
-  <span className="text-text-primary font-semibold ml-1">
-    {profile?.target_company || 'Not Set'}
-  </span>
-  {' '}• {currentStreak} day streak
-</p>
+      <p className="text-sm mt-1 mb-6 text-text-secondary">
+        Target:{" "}
+        <span className="text-text-primary font-semibold">
+          {profile?.target_company || 'Not Set'}
+        </span>
+        {" "}• {currentStreak} day streak
+      </p>
 
-      {/* MAIN STATS */}
-
+      {/* STATS GRID */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
 
+        {/* Target Company */}
         <div className="card p-4">
           <p className="text-xs text-text-muted">
             Target Company
           </p>
-
-          <p className="text-lg font-semibold mt-1 text-text-primary">
-  {profile?.target_company || '-'}
-</p>
+          <p className="mt-1 text-base font-semibold text-accent">
+            {profile?.target_company || '-'}
+          </p>
         </div>
 
+        {/* DSA Level */}
         <div className="card p-4">
           <p className="text-xs text-text-muted">
             DSA Level
           </p>
-
-          <p className="text-lg font-semibold mt-1">
+          <p className="mt-1 text-base font-semibold text-text-primary">
             {profile?.dsa_level || '-'}
           </p>
         </div>
 
+        {/* Current Day */}
         <div className="card p-4">
           <p className="text-xs text-text-muted">
             Current Day
           </p>
-
-          <p className="text-lg font-semibold mt-1">
+          <p className="mt-1 text-base font-semibold text-text-primary">
             Day {currentDay}
           </p>
         </div>
 
+        {/* Daily Hours */}
         <div className="card p-4">
           <p className="text-xs text-text-muted">
             Daily Hours
           </p>
-
-          <p className="text-lg font-semibold mt-1">
-            {profile?.daily_hours || '-'}h
+          <p className="mt-1 text-base font-semibold text-text-primary">
+            {profile?.daily_hours || '-'}
+            <span className="text-text-secondary">h</span>
           </p>
         </div>
 
       </div>
 
-      {/* TODAY'S PROGRESS */}
-
+      {/* PROGRESS */}
       <div className="card p-5 mb-8">
 
         <div className="flex justify-between mb-3">
-          <p className="font-medium">
+          <p className="font-medium text-text-primary">
             Today's Progress
           </p>
 
-          <p className="text-accent font-medium">
+          <p className="text-accent font-semibold">
             {progress}%
           </p>
         </div>
@@ -173,49 +171,44 @@ export default function Dashboard() {
         <div className="h-2 bg-surface-hover rounded-full mb-3">
           <div
             className="h-full bg-accent rounded-full transition-all"
-            style={{
-              width: `${progress}%`,
-            }}
+            style={{ width: `${progress}%` }}
           />
         </div>
 
         <p className="text-sm text-text-secondary">
-          {completedToday} of {totalToday} tasks completed
+          <span className="text-text-primary font-medium">
+            {completedToday}
+          </span>{" "}
+          of {totalToday} tasks completed
         </p>
-
       </div>
 
-      {/* RECENT DAYS */}
-
+      {/* RECENT HISTORY */}
       <div className="card p-5 mb-8">
 
-        <h2 className="font-medium mb-4">
+        <h2 className="font-medium mb-4 text-text-primary">
           Recent Plan History
         </h2>
 
         <div className="space-y-2">
-
           {plans.slice(0, 5).map(plan => (
             <div
               key={plan.id}
-              className="flex justify-between text-sm"
+              className="flex justify-between text-sm py-1"
             >
-              <span>
+              <span className="text-text-primary font-medium">
                 Day {plan.plan_day}
               </span>
 
-              <span className="text-text-muted">
+              <span className="text-text-secondary">
                 {plan.date}
               </span>
             </div>
           ))}
-
         </div>
-
       </div>
 
       {/* QUICK ACTIONS */}
-
       <div className="grid grid-cols-2 gap-4">
 
         <QuickAction
@@ -245,7 +238,6 @@ export default function Dashboard() {
           to="/profile"
           sub={profile?.target_company || 'Choose company'}
         />
-
       </div>
 
     </div>
