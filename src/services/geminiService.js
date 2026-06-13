@@ -79,6 +79,7 @@ export async function generateDailyPlan(profile) {
     dsaLevel,
     dailyHours,
     weakTopics,
+    previousTasks = [],
   } = profile
   const prompt = `
 You are PrepPilot AI.

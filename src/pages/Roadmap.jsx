@@ -27,7 +27,7 @@ export default function Roadmap() {
   Promise.all([
     getProfile(user.id),
     getProgressLogs(user.id, today),
-    getDailyPlans(user.id, 7),
+    getDailyPlans(user.id, 30),
   ])
     .then(([p, logs, plans]) => {
       setProfile(p)
@@ -77,16 +77,26 @@ export default function Roadmap() {
     }
 
     // Get next day number
-    const lastDay = await getLastPlanDay(user.id)
-    const nextDay = lastDay + 1
+    // Get next day number
+const lastDay = await getLastPlanDay(user.id)
+const nextDay = lastDay + 1
 
-    // Generate new plan
-    const result = await generateDailyPlan({
-      targetCompany: profile.target_company || profile.targetCompany,
-      dsaLevel: profile.dsa_level || profile.dsaLevel,
-      dailyHours: profile.daily_hours || profile.dailyHours,
-      currentDay: nextDay,
-    })
+// Fetch previous plans
+const previousPlans = await getDailyPlans(user.id, 30)
+
+const previousTasks = previousPlans
+  .flatMap(plan => plan.tasks || [])
+  .map(task => task.title)
+  .slice(0, 15)
+
+// Generate new plan
+const result = await generateDailyPlan({
+  targetCompany: profile.target_company || profile.targetCompany,
+  dsaLevel: profile.dsa_level || profile.dsaLevel,
+  dailyHours: profile.daily_hours || profile.dailyHours,
+  currentDay: nextDay,
+  previousTasks,
+})
 
     setPlan({
   ...result,
